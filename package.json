@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/flpms/node-apontador/issues"
   },
-  "homepage": "https://github.com/flpms/node-apontador#readme"
+  "homepage": "https://github.com/flpms/node-apontador#readme",
+  "dependencies": {
+    "oauth": "^0.9.13"
+  }
 }
