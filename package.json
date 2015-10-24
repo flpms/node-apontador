@@ -1,10 +1,10 @@
 {
   "name": "node-apontador",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Node.js module for interacting with Apontador API v2.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/lib/apontador.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
   "homepage": "https://github.com/flpms/node-apontador#readme",
   "dependencies": {
     "oauth": "^0.9.13"
+  },
+  "devDependencies": {
+    "mocha": "*"
   }
 }
