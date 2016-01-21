@@ -1,6 +1,6 @@
 {
   "name": "node-apontador",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Node.js module for interacting with Apontador API v2.0",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/flpms/node-apontador.git"
   },
-  "keywords": [ "node", "apontador", "api", "oauth" ],
+  "keywords": [
+    "node",
+    "apontador",
+    "api",
+    "oauth"
+  ],
   "author": "Filipe M. Silva",
   "license": "ISC",
   "bugs": {
