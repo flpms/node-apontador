@@ -1,5 +1,8 @@
 # Node Apontador
 
+
+[![build status](https://secure.travis-ci.org/flpms/node-apontador.png)](http://travis-ci.org/flpms/node-apontador)
+
 Node.js module for interacting with Apontador API v2.0
 
 ## Install
