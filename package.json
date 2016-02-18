@@ -3,8 +3,11 @@
   "version": "1.4.3",
   "description": "Node.js module for interacting with Apontador API v2.0",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "mocha tests/lib/apontador.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
