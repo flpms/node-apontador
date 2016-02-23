@@ -29,14 +29,15 @@ describe('Apontador', function() {
             }
 
             assert.equal(typeof sucess, 'object');
+            assert.equal(typeof sucess.results.header, 'object');
+            assert.equal(typeof sucess.results.header.rows, 'number');
+            assert.equal(sucess.results.header.rows, 10);
 
             done();
         });
     });
 
-    it('search for a place', function() {
-
-        this.timeout(10000);
+    it('search for a place', function(done) {
 
         var apt = Apontador.createClient({
             clientSecret: 'nId4d7RfOyTWxSeZoIkTFskw0xT~',
@@ -50,13 +51,14 @@ describe('Apontador', function() {
             }
 
             assert.equal(typeof sucess, 'object');
-            assert.equal(sucess.result.places[0].id, 'C408483939344N344B');
+            assert.equal(typeof sucess.results, 'object');
+            assert.equal(sucess.results.places[0].id, 'C408483939344N344B');
 
             done();
         });
     });
 
-    it('search for a addresses', function() {
+    it('search for a addresses', function(done) {
 
         this.timeout(10000);
 
@@ -65,13 +67,16 @@ describe('Apontador', function() {
             clientId: 'test_node_apontador'
         });
 
-        apt.addresses({ q : 'Av. Paulista', fq : 'address.city:"Sao Paulo"' }, function(err, sucess) {
+        apt.addresses({ q : 'Av. Paulista' }, function(err, sucess) {
 
             if (err) {
                 throw err;
             }
 
             assert.equal(typeof sucess, 'object');
+            assert.equal(typeof sucess.addressResults.header, 'object');
+            assert.equal(typeof sucess.addressResults.header.rows, 'number');
+            assert.equal(sucess.addressResults.header.rows, 10);
 
             done();
         });
@@ -97,13 +102,13 @@ describe('Apontador', function() {
             assert.equal(typeof sucess, 'object');
             assert.equal(Array.isArray(sucess), false);
             assert.equal(sucess.place.id, 'C408483939344N344B');
-            console.log(dn);
+
             done();
         });
     });
 
 
-    it('search for a place by zipcode', function() {
+    it('search for a place by zipcode', function(done) {
 
         this.timeout(10000);
 
@@ -119,9 +124,33 @@ describe('Apontador', function() {
             }
 
             assert.equal(typeof sucess, 'object');
-            assert.equal(sucess.result.addresses.state, 'SP');
-            assert.equal(sucess.result.addresses.zipcode, '09090780');
+            assert.equal(sucess.results.places[0].address.state, 'SP');
+            assert.equal(sucess.results.places[0].address.zipcode, '09090780');
             done();
         });
     });
+
+    it('get reviews', function(done) {
+        this.timeout(10000);
+
+
+        var apt = Apontador.createClient({
+            clientSecret: 'nId4d7RfOyTWxSeZoIkTFskw0xT~',
+            clientId: 'test_node_apontador'
+        });
+
+        apt.getPlaceReview('C408483939344N344B', function(err, sucess) {
+
+            if (err) {
+                console.log(' - - - ', err);
+            }
+
+            assert.equal(typeof sucess, 'object');
+            assert.equal(typeof sucess.reviewResults, 'object');
+            assert.equal(typeof sucess.reviewResults.reviews[0], 'object');
+            assert.equal(sucess.reviewResults.reviews[0].id, '823790');
+
+            done();
+        });
+    })
 });
