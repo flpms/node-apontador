@@ -26,9 +26,10 @@ npm install node-apontador --save
 		console.log(sucess);
 	});
 ```
-## Your can use
+## Usage
 
 * Search
+
 ``` Javascript
 
 client.search({ q : 'mazza restaurante', fq : 'address.city:"santo andre"' }, function() {
@@ -71,7 +72,22 @@ apt.getPlaceById('C408483939344N344B', function(err, sucess) {
 * Search for a zipcode
 
 ``` Javascript
+// Send a brazilian zipcode to get places.
 apt.getPlacesByZipcode('09090780', function(err, sucess) {
+
+    if (err) {
+        throw err;
+    }
+
+    console.log(sucess);
+});
+```
+
+* Search for a zipcode
+
+``` Javascript
+// Send placeID to get reviews
+apt.getPlaceReview('C408483939344N344B', function(err, sucess) {
 
     if (err) {
         throw err;
