@@ -139,7 +139,7 @@ describe('Apontador', function() {
             clientId: 'test_node_apontador'
         });
 
-        apt.getPlaceReview('C408483939344N344B', function(err, sucess) {
+        apt.getPlaceReview('JJ4Y8A2F', {rows: 50},function(err, sucess) {
 
             if (err) {
                 console.log(' - - - ', err);
@@ -148,7 +148,8 @@ describe('Apontador', function() {
             assert.equal(typeof sucess, 'object');
             assert.equal(typeof sucess.reviewResults, 'object');
             assert.equal(typeof sucess.reviewResults.reviews[0], 'object');
-            assert.equal(sucess.reviewResults.reviews[0].id, '823790');
+            assert.equal(sucess.reviewResults.header.rows, 50);
+            assert.equal(sucess.reviewResults.reviews[0].id, '1302900');
 
             done();
         });
