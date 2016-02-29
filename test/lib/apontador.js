@@ -39,6 +39,8 @@ describe('Apontador', function() {
 
     it('search for a place', function(done) {
 
+        this.timeout(10000);
+
         var apt = Apontador.createClient({
             clientSecret: 'nId4d7RfOyTWxSeZoIkTFskw0xT~',
             clientId: 'test_node_apontador'
