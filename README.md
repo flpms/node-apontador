@@ -69,6 +69,20 @@ apt.getPlaceById('C408483939344N344B', function(err, sucess) {
 
 ```
 
+* Search for photos
+
+``` Javascript
+// Send placeID to get photos
+apt.getPlacePhotos('C408483939344N344B', function(err, sucess) {
+
+    if (err) {
+        throw err;
+    }
+
+    console.log(sucess);
+});
+```
+
 * Search for a zipcode
 
 ``` Javascript
