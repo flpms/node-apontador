@@ -4,12 +4,12 @@ var Apontador = require('../../lib/apontador.js');
 describe('Apontador', function() {
     it('get initial object', function() {
 
-            var apt = Apontador.createClient({
-                clientSecret: 'nId4d7RfOyTWxSeZoIkTFskw0xT~',
-                clientId: 'test_node_apontador'
-            });
+        var apt = Apontador.createClient({
+            clientSecret: 'nId4d7RfOyTWxSeZoIkTFskw0xT~',
+            clientId: 'test_node_apontador'
+        });
 
-            assert.equal(typeof apt, 'object');
+        assert.equal(typeof apt, 'object');
     });
 
     it('get token and data from Apontador', function(done) {
@@ -22,11 +22,6 @@ describe('Apontador', function() {
         });
 
         apt._get('search', { q : 'mazza restaurante', fq : 'address.city:"santo andre"' }, function(err, sucess) {
-
-            if (err) {
-
-                throw err;
-            }
 
             assert.equal(typeof sucess, 'object');
             assert.equal(typeof sucess.results.header, 'object');
@@ -47,11 +42,6 @@ describe('Apontador', function() {
         });
 
         apt.search({ q : 'mazza restaurante', fq : 'address.city:"santo andre"' }, function(err, sucess) {
-
-            if (err) {
-                throw err;
-            }
-
             assert.equal(typeof sucess, 'object');
             assert.equal(typeof sucess.results, 'object');
             assert.equal(sucess.results.places[0].id, 'C408483939344N344B');
@@ -70,10 +60,6 @@ describe('Apontador', function() {
         });
 
         apt.addresses({ q : 'Av. Paulista' }, function(err, sucess) {
-
-            if (err) {
-                throw err;
-            }
 
             assert.equal(typeof sucess, 'object');
             assert.equal(typeof sucess.addressResults.header, 'object');
@@ -96,11 +82,6 @@ describe('Apontador', function() {
         });
 
         apt.getPlaceById('C408483939344N344B', {}, function(err, sucess) {
-
-            if (err) {
-                throw err;
-            }
-
             assert.equal(typeof sucess, 'object');
             assert.equal(Array.isArray(sucess), false);
             assert.equal(sucess.place.id, 'C408483939344N344B');
@@ -121,10 +102,6 @@ describe('Apontador', function() {
 
         apt.getPlacesByZipcode('09090780', function(err, sucess) {
 
-            if (err) {
-                throw err;
-            }
-
             assert.equal(typeof sucess, 'object');
             assert.equal(sucess.results.places[0].address.state, 'SP');
             assert.equal(sucess.results.places[0].address.zipcode, '09090780');
@@ -143,15 +120,31 @@ describe('Apontador', function() {
 
         apt.getPlaceReview('JJ4Y8A2F', {rows: 50},function(err, sucess) {
 
-            if (err) {
-                console.log(' - - - ', err);
-            }
-
             assert.equal(typeof sucess, 'object');
             assert.equal(typeof sucess.reviewResults, 'object');
             assert.equal(typeof sucess.reviewResults.reviews[0], 'object');
             assert.equal(sucess.reviewResults.header.rows, 50);
             assert.equal(sucess.reviewResults.reviews[0].id, '1302900');
+
+            done();
+        });
+    });
+
+    it('get photos', function(done) {
+        this.timeout(10000);
+
+        var apt = Apontador.createClient({
+            clientSecret: 'nId4d7RfOyTWxSeZoIkTFskw0xT~',
+            clientId: 'test_node_apontador'
+        });
+
+        apt.getPlacePhotos('C408483939344N344B', {rows: 50}, function(err, sucess) {
+
+            assert.equal(typeof sucess, 'object');
+            assert.equal(typeof sucess.photoResults, 'object');
+            assert.equal(typeof sucess.photoResults.photos[0], 'object');
+            assert.equal(sucess.photoResults.header.rows, 2);
+            assert.equal(sucess.photoResults.photos[0].id, 251066);
 
             done();
         });
