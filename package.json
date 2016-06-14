@@ -1,6 +1,6 @@
 {
   "name": "node-apontador",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Node.js module for interacting with Apontador API v2.0",
   "main": "index.js",
   "directories": {
