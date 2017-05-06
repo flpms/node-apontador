@@ -29,6 +29,8 @@
     "oauth": "^0.9.13"
   },
   "devDependencies": {
-    "mocha": "*"
+    "chai": "^3.5.0",
+    "mocha": "*",
+    "sinon": "^2.2.0"
   }
 }
